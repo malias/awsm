@@ -1,0 +1,3 @@
+redisAdmin/app/cache/*
+redisAdmin/app/logs/*
+home/*
