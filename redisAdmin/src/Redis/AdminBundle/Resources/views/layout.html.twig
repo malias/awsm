@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %}<title>Base</title>{% endblock %}
+
+    {% block stylesheets %}
+    {% stylesheets '@RedisAdminBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% endblock %}
+
+    {% javascripts 
+        '@RedisAdminBundle/Resources/public/js/vendor/modernizr.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
+
+</head>
+<body>
+
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/app_dev.php">Redis Admin</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="active">
+            <a href="#">
+            {% if tmpdb is defined %}
+                Active  {{ tmpdb }}
+            {% else %}   
+                Active DB 0 
+            {% endif %}
+
+            </a></li>
+        <li class="has-dropdown">
+          <a href="#">Databases</a>
+          <ul class="dropdown">
+            {% for i in range(0, 3) %}
+            <li><a href="/app_dev.php/show/{{ i }}">DB {{ i }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+
+    {% block body %}
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>{% block bodytitel %}Welcome to RedisAdmin{% endblock %}</h1>
+        </div>
+    </div>
+
+    {% block info %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% javascripts 
+        '@RedisAdminBundle/Resources/public/js/vendor/jquery.js'
+        '@RedisAdminBundle/Resources/public/js/foundation.min.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endblock %}
+    <script>
+        $(document).foundation();
+    </script>
+    {% endblock %}
+
+</body>
+</html>

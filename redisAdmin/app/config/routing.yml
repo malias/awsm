@@ -1,4 +1,3 @@
 redis_admin:
     resource: "@RedisAdminBundle/Resources/config/routing.yml"
     prefix:   /
-

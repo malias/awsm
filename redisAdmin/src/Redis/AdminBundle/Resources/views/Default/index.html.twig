@@ -1,1 +1,42 @@
-Hello {{ name }}!
+{% extends 'RedisAdminBundle::layout.html.twig' %}
+
+{% block title %}<title>RedisAdmin</title>{% endblock %}
+
+{% block info %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <h3>Stats from Redis</h3>
+            <p>You can find here some usefull informations</p>
+                <div class="row">
+                    <div class="large-3 medium-3 columns">
+                        	<a>Redis Version</a> 	<span class="secondary label">{{ redis.redis_version }}</span><br />
+                        	<a>Port</a>				<span class="secondary label">{{ redis.tcp_port }}</span><br />
+                        	<a>Uptime</a>			<span class="secondary label">{{ redis.uptime_in_seconds|date('H:i') }}</span><br />
+                        	<a>Configfile</a>		<span class="secondary label">{{ redis.config_file }}</span><br />       
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                            <a>Memory inuse</a>			<span class="secondary label">{{ redis.used_memory_human }}</span><br />
+                            <a>Memory Peak</a>			<span class="secondary label">{{ redis.used_memory_peak_human }}</span><br />
+                            <a>Memory Ratio</a>			<span class="secondary label">{{ redis.mem_fragmentation_ratio }}</span><br />
+                            <a>Last Save</a>			<span class="secondary label">{{ redis.rdb_last_save_time|date('Y-m-d H:i:s') }}</span><br />
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                            <a>CPU System</a>         <span class="secondary label">{{ redis.used_cpu_sys }}</span><br />
+                            <a>CPU User</a>          <span class="secondary label">{{ redis.used_cpu_user }}</span><br />
+                            <a>CPU Syst Child</a>         <span class="secondary label">{{ redis.used_cpu_sys_children }}</span><br />
+                            <a>CPU User Child</a>            <span class="secondary label">{{ redis.used_cpu_user_children }}</span><br />
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                        <a href="#" data-dropdown="drop1" class="secondary button dropdown">Quick Action</a><br>
+                        <ul id="drop1" class="f-dropdown">
+                          <li><a href="#">flushAll</a></li>
+                          <li><a href="#">resetStat</a></li>
+                          <li><a href="#">slowlog</a></li>
+                        </ul>
+                    </div>        
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

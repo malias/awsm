@@ -1,0 +1,91 @@
+{% extends 'RedisAdminBundle::layout.html.twig' %}
+
+
+{% block title %}<title>DB Show</title>{% endblock %}
+{% block bodytitel %}Database {{ tmpdb }} {% endblock %}
+
+{% block info %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <h3>Stats from {{ tmpdb }}</h3>
+            <p>You can find here some usefull informations</p>
+                <div class="row">
+                    <div class="large-3 medium-3 columns">
+                        	<a>Redis Version</a> 	<span class="secondary label"> </span><br />
+                        	<a>Port</a>				<span class="secondary label"> </span><br />
+                        	<a>Uptime</a>			<span class="secondary label"> </span><br />
+                        	<a>Configfile</a>		<span class="secondary label"> </span><br />       
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                            <a>Memory inuse</a>			<span class="secondary label"> </span><br />
+                            <a>Memory Peak</a>			<span class="secondary label"> </span><br />
+                            <a>Memory Ratio</a>			<span class="secondary label"> </span><br />
+                            <a>Last Save</a>			<span class="secondary label"> </span><br />
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                            <a>CPU System</a>         <span class="secondary label"> </span><br />
+                            <a>CPU User</a>          <span class="secondary label"> </span><br />
+                            <a>CPU Syst Child</a>         <span class="secondary label"> </span><br />
+                            <a>CPU User Child</a>            <span class="secondary label"> </span><br />
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                        <a href="#" data-dropdown="drop1" class="secondary button dropdown">Quick Action</a><br>
+                        <ul id="drop1" class="f-dropdown">
+                          <li><a href="#">flushAll</a></li>
+                          <li><a href="#">resetStat</a></li>
+                          <li><a href="#">slowlog</a></li>
+                        </ul>
+                    </div>        
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel callout radius">
+  <h5>Betaaa Betaaa</h5>
+  <p>Should be a form to change entries and add new</p>
+</div>
+
+<div class="row">
+<div class="small-10 large-centered columns">
+<table>
+  <thead>
+    <tr>
+      <th width="450px">Table Header</th>
+      <th width="450px">Table Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key,value in redis %}
+	    <tr>
+	      <td> 
+	      	<a href="/app_dev.php/show/{{ db }}/{{ value }}/" > {{ key }} </a>: {{ value }}
+	      </td>
+	      <td><input type="text" placeholder="{{ value }}" /></td>
+	    </tr>  
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="pagination-centered">
+	  <ul class="pagination">
+		    <li class="arrow unavailable"><a href="">&laquo;</a></li>
+		    <li class="current"><a href="">1</a></li>
+		    <li><a href="">2</a></li>
+		    <li><a href="">3</a></li>
+		    <li><a href="">4</a></li>
+		    <li class="unavailable"><a href="">&hellip;</a></li>
+		    <li><a href="">12</a></li>
+		    <li><a href="">13</a></li>
+		    <li class="arrow"><a href="">&raquo;</a></li>
+	  </ul>
+</div>
+
+<br>
+{{ dump(tmpdb) }}
+{% endblock %}
+
+ 

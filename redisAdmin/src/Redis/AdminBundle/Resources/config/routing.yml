@@ -1,3 +1,10 @@
-redis_admin_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: RedisAdminBundle:Default:index }
+# app/config/routing.yml
+RedisAdminBundle_homepage:
+    path:      /
+    defaults:  { _controller: RedisAdminBundle:Default:index }
+RedisAdminBundle_show:
+    path:      /show/{db}/
+    defaults:  { _controller: RedisAdminBundle:Default:show }
+RedisAdminBundle_details:
+    path:      /show/{db}/{key}/
+    defaults:  { _controller: RedisAdminBundle:Default:details }    
